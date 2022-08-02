@@ -18,3 +18,16 @@ https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/all_any.html
     "kwargs_max_len": 7
 }
 """
+
+
+def dict_from_args(*args, **kwargs):
+    try:
+        args_sum = sum(args)
+        kwargs_max_len = len(max(kwargs, key=len))
+        return args_sum, kwargs_max_len
+    except TypeError:
+        raise TypeError('Все позиционные аргументы должны быть целыми')
+
+
+
+print(dict_from_args(1, 2, 3, k='qwe', a='r'))
