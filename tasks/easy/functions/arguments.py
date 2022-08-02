@@ -21,13 +21,14 @@ https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/all_any.html
 
 
 def dict_from_args(*args, **kwargs):
+    data = {}
     try:
-        args_sum = sum(args)
-        kwargs_max_len = len(max(kwargs, key=len))
-        return args_sum, kwargs_max_len
+        data['args_sum'] = sum(args)
+        data['kwargs_max_len'] = len(max(kwargs.values(), key=len))
+        return data
     except TypeError:
-        raise TypeError('Все позиционные аргументы должны быть целыми')
+        raise 'Все позиционные аргументы должны быть целыми'
 
 
 
-print(dict_from_args(1, 2, 3, k='qwe', a='r'))
+print(dict_from_args(1, 2, 3, k='aratdghd', a='r'))
