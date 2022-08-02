@@ -22,13 +22,13 @@ https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/all_any.html
 
 def dict_from_args(*args, **kwargs):
     data = {}
-    try:
-        data['args_sum'] = sum(args)
-        data['kwargs_max_len'] = len(max(kwargs.values(), key=len))
-        return data
-    except TypeError:
-        raise 'Все позиционные аргументы должны быть целыми'
+    if not all(isinstance(i, int) for i in args):
+        raise TypeError('Все позиционные аргументы должны быть целыми')
+    data['args_sum'] = sum(args)
+    if not all(isinstance(i, str) for i in kwargs.values()):
+        raise TypeError('Все аргументы - ключевые слова должны быть строками')
+    data['kwargs_max_len'] = len(max(kwargs.values(), key=len))
+    return data
 
 
-
-print(dict_from_args(1, 2, 3, k='aratdghd', a='r'))
+print(dict_from_args(1, 2, 3, k='aratdghd', a='rtu'))
