@@ -23,7 +23,10 @@ school_data = {
 
 
 def incr_students(data, name):
-    data[name] = data[name][0] + 1
+    if data[name][0] != 0:
+        data[name] = data[name][0] + 1
+    else:
+        return data
     return data
 
 
